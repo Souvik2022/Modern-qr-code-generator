@@ -65,40 +65,49 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Header />
       
       <div className="container mx-auto px-4 py-8">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-4">
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent mb-6">
             QR Code Generator
           </h1>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Create beautiful, customizable QR codes for any purpose. Generate codes for websites, WiFi, contacts, and more.
+          <p className="text-slate-600 text-xl max-w-3xl mx-auto leading-relaxed">
+            Create beautiful, customizable QR codes for any purpose. Generate codes for websites, WiFi, contacts, and more with Material Design principles.
           </p>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {/* QR Type Selection & Input */}
-          <div className="lg:col-span-2 space-y-6">
-            <Card className="p-6 shadow-xl border-0 bg-white/80 backdrop-blur-sm">
-              <h2 className="text-2xl font-semibold mb-6 text-gray-800">Choose QR Code Type</h2>
+          <div className="lg:col-span-2 space-y-8">
+            <Card className="p-8 shadow-2xl border-0 bg-white/90 backdrop-blur-lg rounded-3xl hover:shadow-3xl transition-all duration-300">
+              <h2 className="text-3xl font-bold mb-8 text-slate-800 flex items-center gap-3">
+                <div className="w-8 h-8 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"></div>
+                Choose QR Code Type
+              </h2>
               
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
                 {qrTypes.map((type) => {
                   const IconComponent = type.icon;
                   return (
                     <button
                       key={type.id}
                       onClick={() => setQrData({ ...qrData, type: type.id, content: "" })}
-                      className={`p-4 rounded-xl border-2 transition-all duration-200 hover:scale-105 ${
+                      className={`group p-6 rounded-2xl border-2 transition-all duration-300 hover:scale-105 hover:shadow-lg ${
                         qrData.type === type.id
-                          ? "border-purple-500 bg-purple-50 text-purple-700"
-                          : "border-gray-200 bg-white hover:border-purple-300"
+                          ? "border-indigo-500 bg-gradient-to-br from-indigo-50 to-purple-50 text-indigo-700 shadow-lg shadow-indigo-100"
+                          : "border-slate-200 bg-white hover:border-indigo-300 hover:bg-slate-50"
                       }`}
                     >
-                      <IconComponent className="w-6 h-6 mx-auto mb-2" />
-                      <span className="text-xs font-medium">{type.label}</span>
+                      <div className={`w-12 h-12 mx-auto mb-3 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                        qrData.type === type.id 
+                          ? "bg-gradient-to-r from-indigo-500 to-purple-500 text-white" 
+                          : "bg-slate-100 text-slate-600 group-hover:bg-indigo-100 group-hover:text-indigo-600"
+                      }`}>
+                        <IconComponent className="w-6 h-6" />
+                      </div>
+                      <span className="text-sm font-semibold">{type.label}</span>
                     </button>
                   );
                 })}
@@ -107,14 +116,14 @@ const Index = () => {
               <QRCodeGenerator qrData={qrData} setQrData={setQrData} />
             </Card>
 
-            <Card className="p-6 shadow-xl border-0 bg-white/80 backdrop-blur-sm">
+            <Card className="p-8 shadow-2xl border-0 bg-white/90 backdrop-blur-lg rounded-3xl hover:shadow-3xl transition-all duration-300">
               <QRCustomization qrOptions={qrOptions} setQrOptions={setQrOptions} />
             </Card>
           </div>
 
           {/* QR Code Preview */}
           <div className="lg:col-span-1">
-            <Card className="p-6 shadow-xl border-0 bg-white/80 backdrop-blur-sm sticky top-8">
+            <Card className="p-8 shadow-2xl border-0 bg-white/90 backdrop-blur-lg rounded-3xl sticky top-8 hover:shadow-3xl transition-all duration-300">
               <QRCodePreview qrData={qrData} qrOptions={qrOptions} />
             </Card>
           </div>
