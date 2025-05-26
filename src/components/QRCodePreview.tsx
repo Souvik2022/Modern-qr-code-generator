@@ -8,9 +8,10 @@ import { toast } from "@/hooks/use-toast";
 interface QRCodePreviewProps {
   qrData: QRData;
   qrOptions: QROptions;
+  logo?: string | null;
 }
 
-export const QRCodePreview = ({ qrData, qrOptions }: QRCodePreviewProps) => {
+export const QRCodePreview = ({ qrData, qrOptions, logo }: QRCodePreviewProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [qrCodeDataURL, setQrCodeDataURL] = useState<string>("");
 
@@ -75,16 +76,41 @@ export const QRCodePreview = ({ qrData, qrOptions }: QRCodePreviewProps) => {
           errorCorrectionLevel: qrOptions.errorCorrectionLevel,
         });
 
-        // Generate data URL for download
-        const dataURL = canvasRef.current.toDataURL("image/png");
-        setQrCodeDataURL(dataURL);
+        // Add logo if provided
+        if (logo) {
+          const ctx = canvasRef.current.getContext('2d');
+          if (ctx) {
+            const img = new Image();
+            img.onload = () => {
+              const logoSize = qrOptions.width * 0.2; // Logo is 20% of QR code size
+              const x = (qrOptions.width - logoSize) / 2;
+              const y = (qrOptions.width - logoSize) / 2;
+              
+              // Draw white background for logo
+              ctx.fillStyle = '#FFFFFF';
+              ctx.fillRect(x - 5, y - 5, logoSize + 10, logoSize + 10);
+              
+              // Draw logo
+              ctx.drawImage(img, x, y, logoSize, logoSize);
+              
+              // Update data URL
+              const dataURL = canvasRef.current!.toDataURL("image/png");
+              setQrCodeDataURL(dataURL);
+            };
+            img.src = logo;
+          }
+        } else {
+          // Generate data URL without logo
+          const dataURL = canvasRef.current.toDataURL("image/png");
+          setQrCodeDataURL(dataURL);
+        }
       } catch (error) {
         console.error("Error generating QR code:", error);
       }
     };
 
     generateQR();
-  }, [qrData, qrOptions]);
+  }, [qrData, qrOptions, logo]);
 
   const downloadQR = () => {
     if (!qrCodeDataURL) return;
@@ -158,7 +184,7 @@ export const QRCodePreview = ({ qrData, qrOptions }: QRCodePreviewProps) => {
 
   return (
     <div className="space-y-6">
-      <h3 className="text-2xl font-bold text-slate-800 flex items-center gap-3">
+      <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-200 flex items-center gap-3">
         <div className="w-6 h-6 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"></div>
         QR Code Preview
       </h3>
@@ -200,7 +226,7 @@ export const QRCodePreview = ({ qrData, qrOptions }: QRCodePreviewProps) => {
       <div className="space-y-3">
         <Button 
           onClick={downloadQR} 
-          className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 rounded-xl py-6 text-lg font-semibold shadow-lg shadow-indigo-200 transition-all duration-200 hover:shadow-xl hover:scale-105"
+          className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 rounded-xl py-6 text-lg font-semibold shadow-lg shadow-indigo-200 dark:shadow-indigo-900/50 transition-all duration-200 hover:shadow-xl hover:scale-105"
           disabled={!qrCodeDataURL}
         >
           <Download className="w-5 h-5 mr-3" />
@@ -212,7 +238,7 @@ export const QRCodePreview = ({ qrData, qrOptions }: QRCodePreviewProps) => {
             onClick={copyQR} 
             variant="outline"
             disabled={!qrCodeDataURL}
-            className="border-indigo-200 hover:bg-indigo-50 hover:border-indigo-300 rounded-xl py-3 font-semibold transition-all duration-200"
+            className="border-indigo-200 dark:border-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/50 hover:border-indigo-300 dark:hover:border-indigo-500 rounded-xl py-3 font-semibold transition-all duration-200"
           >
             <Copy className="w-4 h-4 mr-2" />
             Copy
@@ -222,7 +248,7 @@ export const QRCodePreview = ({ qrData, qrOptions }: QRCodePreviewProps) => {
             onClick={shareQR} 
             variant="outline"
             disabled={!qrCodeDataURL}
-            className="border-indigo-200 hover:bg-indigo-50 hover:border-indigo-300 rounded-xl py-3 font-semibold transition-all duration-200"
+            className="border-indigo-200 dark:border-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/50 hover:border-indigo-300 dark:hover:border-indigo-500 rounded-xl py-3 font-semibold transition-all duration-200"
           >
             <Share2 className="w-4 h-4 mr-2" />
             Share
@@ -230,15 +256,15 @@ export const QRCodePreview = ({ qrData, qrOptions }: QRCodePreviewProps) => {
         </div>
       </div>
 
-      <div className="bg-gradient-to-r from-slate-50 to-indigo-50 p-6 rounded-2xl border border-slate-200">
-        <h4 className="font-bold text-slate-800 mb-3 flex items-center gap-2">
+      <div className="bg-gradient-to-r from-slate-50 to-indigo-50 dark:from-slate-700 dark:to-indigo-900/50 p-6 rounded-2xl border border-slate-200 dark:border-slate-600">
+        <h4 className="font-bold text-slate-800 dark:text-slate-200 mb-3 flex items-center gap-2">
           <div className="w-4 h-4 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"></div>
           QR Code Details
         </h4>
-        <div className="text-sm text-slate-600 space-y-2">
+        <div className="text-sm text-slate-600 dark:text-slate-300 space-y-2">
           <div className="flex justify-between">
             <span className="font-medium">Type:</span> 
-            <span className="bg-white px-3 py-1 rounded-lg font-semibold text-slate-800 uppercase tracking-wide">
+            <span className="bg-white dark:bg-slate-600 px-3 py-1 rounded-lg font-semibold text-slate-800 dark:text-slate-200 uppercase tracking-wide">
               {qrData.type}
             </span>
           </div>
@@ -250,6 +276,12 @@ export const QRCodePreview = ({ qrData, qrOptions }: QRCodePreviewProps) => {
             <span className="font-medium">Error Correction:</span> 
             <span>{qrOptions.errorCorrectionLevel}</span>
           </div>
+          {logo && (
+            <div className="flex justify-between">
+              <span className="font-medium">Logo:</span> 
+              <span className="text-green-600 dark:text-green-400">✓ Included</span>
+            </div>
+          )}
         </div>
       </div>
     </div>
