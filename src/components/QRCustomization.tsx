@@ -35,12 +35,10 @@ export const QRCustomization = ({ qrOptions, setQrOptions }: QRCustomizationProp
 
   return (
     <div className="space-y-6">
-      <h3 className="text-lg font-semibold text-gray-800">Customize QR Code</h3>
-      
       <div className="grid md:grid-cols-2 gap-6">
         {/* Foreground Color */}
         <div className="space-y-3">
-          <Label className="text-sm font-medium text-gray-700">Foreground Color</Label>
+          <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">Foreground Color</Label>
           <div className="flex items-center space-x-3">
             <Input
               type="color"
@@ -71,7 +69,7 @@ export const QRCustomization = ({ qrOptions, setQrOptions }: QRCustomizationProp
 
         {/* Background Color */}
         <div className="space-y-3">
-          <Label className="text-sm font-medium text-gray-700">Background Color</Label>
+          <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">Background Color</Label>
           <div className="flex items-center space-x-3">
             <Input
               type="color"
@@ -104,7 +102,7 @@ export const QRCustomization = ({ qrOptions, setQrOptions }: QRCustomizationProp
       <div className="grid md:grid-cols-2 gap-6">
         {/* Size */}
         <div className="space-y-3">
-          <Label className="text-sm font-medium text-gray-700">Size: {qrOptions.width}px</Label>
+          <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">Size: {qrOptions.width}px</Label>
           <Slider
             value={[qrOptions.width]}
             onValueChange={(value) => updateOption("width", value[0])}
@@ -121,7 +119,7 @@ export const QRCustomization = ({ qrOptions, setQrOptions }: QRCustomizationProp
 
         {/* Margin */}
         <div className="space-y-3">
-          <Label className="text-sm font-medium text-gray-700">Margin: {qrOptions.margin}</Label>
+          <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">Margin: {qrOptions.margin}</Label>
           <Slider
             value={[qrOptions.margin]}
             onValueChange={(value) => updateOption("margin", value[0])}
@@ -139,7 +137,7 @@ export const QRCustomization = ({ qrOptions, setQrOptions }: QRCustomizationProp
 
       {/* Error Correction Level */}
       <div className="space-y-3">
-        <Label className="text-sm font-medium text-gray-700">Error Correction Level</Label>
+        <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">Error Correction Level</Label>
         <Select 
           value={qrOptions.errorCorrectionLevel} 
           onValueChange={(value: 'L' | 'M' | 'Q' | 'H') => updateOption("errorCorrectionLevel", value)}
@@ -154,7 +152,7 @@ export const QRCustomization = ({ qrOptions, setQrOptions }: QRCustomizationProp
             <SelectItem value="H">High (~30%)</SelectItem>
           </SelectContent>
         </Select>
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-gray-500 dark:text-gray-400">
           Higher error correction allows the QR code to be readable even when partially damaged.
         </p>
       </div>

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -41,6 +40,11 @@ export interface QROptions {
   width: number;
   margin: number;
   errorCorrectionLevel: 'L' | 'M' | 'Q' | 'H';
+  patterns?: {
+    bodyType: 'square' | 'circle' | 'rounded' | 'dots';
+    eyeType: 'square' | 'circle' | 'rounded';
+    eyeBallType: 'square' | 'circle' | 'rounded';
+  };
 }
 
 const Index = () => {
@@ -54,7 +58,12 @@ const Index = () => {
     backgroundColor: "#FFFFFF",
     width: 256,
     margin: 2,
-    errorCorrectionLevel: 'M'
+    errorCorrectionLevel: 'M',
+    patterns: {
+      bodyType: 'square',
+      eyeType: 'square',
+      eyeBallType: 'square'
+    }
   });
 
   const [logo, setLogo] = useState<string | null>(null);
@@ -140,7 +149,23 @@ const Index = () => {
                 </Card>
 
                 <Card className="p-8 shadow-2xl border-0 bg-white/90 dark:bg-slate-800/90 backdrop-blur-lg rounded-3xl hover:shadow-3xl transition-all duration-300">
-                  <QRCustomization qrOptions={qrOptions} setQrOptions={setQrOptions} />
+                  <Tabs defaultValue="colors" className="w-full">
+                    <TabsList className="grid w-full grid-cols-2 mb-6">
+                      <TabsTrigger value="colors">Colors & Size</TabsTrigger>
+                      <TabsTrigger value="patterns">Patterns</TabsTrigger>
+                    </TabsList>
+                    
+                    <TabsContent value="colors">
+                      <QRCustomization qrOptions={qrOptions} setQrOptions={setQrOptions} />
+                    </TabsContent>
+                    
+                    <TabsContent value="patterns">
+                      <QRPatterns 
+                        patternOptions={qrOptions.patterns!} 
+                        setPatternOptions={(patterns) => setQrOptions({ ...qrOptions, patterns })} 
+                      />
+                    </TabsContent>
+                  </Tabs>
                   
                   <div className="mt-8 pt-8 border-t border-slate-200 dark:border-slate-600">
                     <LogoUpload onLogoChange={setLogo} currentLogo={logo} />
