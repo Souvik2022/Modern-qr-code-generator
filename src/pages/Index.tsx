@@ -45,6 +45,7 @@ export interface QROptions {
     bodyType: 'square' | 'circle' | 'rounded' | 'dots';
     eyeType: 'square' | 'circle' | 'rounded';
     eyeBallType: 'square' | 'circle' | 'rounded';
+    shapeStyle: 'classic' | 'rounded-square' | 'soft-rounded' | 'dots' | 'diamond' | 'leaf' | 'horizontal-lines' | 'vertical-lines' | 'fluid';
   };
 }
 
@@ -63,7 +64,8 @@ const Index = () => {
     patterns: {
       bodyType: 'square',
       eyeType: 'square',
-      eyeBallType: 'square'
+      eyeBallType: 'square',
+      shapeStyle: 'classic'
     }
   });
 
