@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { QRCodeGenerator } from "@/components/QRCodeGenerator";
 import { QRCodePreview } from "@/components/QRCodePreview";
 import { QRCustomization } from "@/components/QRCustomization";
+import { QRPatterns } from "@/components/QRPatterns";
 import { LogoUpload } from "@/components/LogoUpload";
 import { BatchGenerator } from "@/components/BatchGenerator";
 import { AdvancedExport } from "@/components/AdvancedExport";
