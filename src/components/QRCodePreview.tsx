@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from "react";
-import QRCode from "qrcode";
+
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Download, Share2, Copy, Globe, Wifi, User, MessageSquare, Mail, Phone, MapPin, Calendar } from "lucide-react";
 import { QRData, QROptions } from "@/pages/Index";
 import { toast } from "@/hooks/use-toast";
+import { QRCodeCanvas } from "./QRCodeCanvas";
 
 interface QRCodePreviewProps {
   qrData: QRData;
@@ -12,7 +13,6 @@ interface QRCodePreviewProps {
 }
 
 export const QRCodePreview = ({ qrData, qrOptions, logo }: QRCodePreviewProps) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const [qrCodeDataURL, setQrCodeDataURL] = useState<string>("");
 
   const getQRTypeStyles = (type: string) => {
@@ -28,190 +28,6 @@ export const QRCodePreview = ({ qrData, qrOptions, logo }: QRCodePreviewProps) =
     };
     return styles[type as keyof typeof styles] || styles.url;
   };
-
-  const generateQRContent = (data: QRData): string => {
-    switch (data.type) {
-      case "url":
-        return data.content || "https://example.com";
-      case "text":
-        return data.content || "Sample text";
-      case "wifi":
-        if (!data.wifi?.ssid) return "WIFI:T:WPA;S:SampleNetwork;P:password123;;";
-        return `WIFI:T:${data.wifi.security || "WPA"};S:${data.wifi.ssid};P:${data.wifi.password || ""};;`;
-      case "contact":
-        if (!data.contact?.name) return "BEGIN:VCARD\nVERSION:3.0\nFN:Sample Contact\nEND:VCARD";
-        return `BEGIN:VCARD\nVERSION:3.0\nFN:${data.contact.name}\nTEL:${data.contact.phone || ""}\nEMAIL:${data.contact.email || ""}\nORG:${data.contact.organization || ""}\nEND:VCARD`;
-      case "email":
-        return `mailto:${data.content || "example@example.com"}`;
-      case "phone":
-        return `tel:${data.content || "+1234567890"}`;
-      case "location":
-        const coords = data.content || "40.7128,-74.0060";
-        if (coords.includes(",") && !coords.includes(" ")) {
-          return `geo:${coords}`;
-        }
-        return `geo:0,0?q=${encodeURIComponent(coords)}`;
-      case "event":
-        if (!data.event?.title) return "BEGIN:VEVENT\nSUMMARY:Sample Event\nEND:VEVENT";
-        return `BEGIN:VEVENT\nSUMMARY:${data.event.title}\nDTSTART:${data.event.start?.replace(/[-:]/g, "").replace("T", "") || ""}\nDTEND:${data.event.end?.replace(/[-:]/g, "").replace("T", "") || ""}\nLOCATION:${data.event.location || ""}\nDESCRIPTION:${data.event.description || ""}\nEND:VEVENT`;
-      default:
-        return data.content || "https://example.com";
-    }
-  };
-
-  const applyPatternStyles = (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => {
-    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const data = imageData.data;
-    const shapeStyle = qrOptions.patterns?.shapeStyle || 'classic';
-    
-    console.log('Applying pattern style:', shapeStyle);
-    
-    // Create a new canvas for pattern application
-    const patternCanvas = document.createElement('canvas');
-    patternCanvas.width = canvas.width;
-    patternCanvas.height = canvas.height;
-    const patternCtx = patternCanvas.getContext('2d')!;
-    
-    // Fill with background color
-    patternCtx.fillStyle = qrOptions.backgroundColor;
-    patternCtx.fillRect(0, 0, canvas.width, canvas.height);
-    
-    // Analyze QR code structure and apply patterns
-    const moduleSize = Math.floor(canvas.width / 25); // Approximate module size
-    
-    for (let y = 0; y < canvas.height; y += moduleSize) {
-      for (let x = 0; x < canvas.width; x += moduleSize) {
-        // Sample the center of each module
-        const sampleX = Math.min(x + Math.floor(moduleSize / 2), canvas.width - 1);
-        const sampleY = Math.min(y + Math.floor(moduleSize / 2), canvas.height - 1);
-        const pixelIndex = (sampleY * canvas.width + sampleX) * 4;
-        
-        // Check if this module is dark (QR code data)
-        const isDark = data[pixelIndex] < 128; // Check red channel
-        
-        if (isDark) {
-          patternCtx.fillStyle = qrOptions.color;
-          
-          // Apply different shapes based on selected style
-          switch (shapeStyle) {
-            case 'circle':
-            case 'soft-rounded':
-              patternCtx.beginPath();
-              patternCtx.arc(x + moduleSize/2, y + moduleSize/2, moduleSize/2 * 0.8, 0, 2 * Math.PI);
-              patternCtx.fill();
-              break;
-              
-            case 'rounded-square':
-            case 'rounded':
-              const radius = moduleSize * 0.2;
-              patternCtx.beginPath();
-              patternCtx.roundRect(x + moduleSize*0.1, y + moduleSize*0.1, moduleSize*0.8, moduleSize*0.8, radius);
-              patternCtx.fill();
-              break;
-              
-            case 'dots':
-              patternCtx.beginPath();
-              patternCtx.arc(x + moduleSize/2, y + moduleSize/2, moduleSize/2 * 0.6, 0, 2 * Math.PI);
-              patternCtx.fill();
-              break;
-              
-            case 'diamond':
-              patternCtx.beginPath();
-              patternCtx.moveTo(x + moduleSize/2, y);
-              patternCtx.lineTo(x + moduleSize, y + moduleSize/2);
-              patternCtx.lineTo(x + moduleSize/2, y + moduleSize);
-              patternCtx.lineTo(x, y + moduleSize/2);
-              patternCtx.closePath();
-              patternCtx.fill();
-              break;
-              
-            case 'horizontal-lines':
-              patternCtx.fillRect(x, y + moduleSize*0.3, moduleSize, moduleSize*0.4);
-              break;
-              
-            case 'vertical-lines':
-              patternCtx.fillRect(x + moduleSize*0.3, y, moduleSize*0.4, moduleSize);
-              break;
-              
-            case 'fluid':
-              // Create wavy pattern
-              patternCtx.beginPath();
-              const waveOffset = Math.sin((x + y) / 10) * 2;
-              patternCtx.arc(x + moduleSize/2 + waveOffset, y + moduleSize/2, moduleSize/2 * 0.7, 0, 2 * Math.PI);
-              patternCtx.fill();
-              break;
-              
-            default: // classic
-              patternCtx.fillRect(x, y, moduleSize, moduleSize);
-              break;
-          }
-        }
-      }
-    }
-    
-    // Copy the pattern canvas back to the original canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(patternCanvas, 0, 0);
-  };
-
-  useEffect(() => {
-    const generateQR = async () => {
-      if (!canvasRef.current) return;
-
-      const content = generateQRContent(qrData);
-      
-      try {
-        // Generate basic QR code first
-        await QRCode.toCanvas(canvasRef.current, content, {
-          width: qrOptions.width,
-          margin: qrOptions.margin,
-          color: {
-            dark: qrOptions.color,
-            light: qrOptions.backgroundColor,
-          },
-          errorCorrectionLevel: qrOptions.errorCorrectionLevel,
-        });
-
-        const ctx = canvasRef.current.getContext('2d');
-        if (!ctx) return;
-
-        // Apply pattern styles if not classic
-        if (qrOptions.patterns?.shapeStyle && qrOptions.patterns.shapeStyle !== 'classic') {
-          applyPatternStyles(canvasRef.current, ctx);
-        }
-
-        // Add logo if provided
-        if (logo) {
-          const img = new Image();
-          img.onload = () => {
-            const logoSize = qrOptions.width * 0.2;
-            const x = (qrOptions.width - logoSize) / 2;
-            const y = (qrOptions.width - logoSize) / 2;
-            
-            // Draw white background for logo
-            ctx.fillStyle = '#FFFFFF';
-            ctx.fillRect(x - 5, y - 5, logoSize + 10, logoSize + 10);
-            
-            // Draw logo
-            ctx.drawImage(img, x, y, logoSize, logoSize);
-            
-            // Update data URL
-            const dataURL = canvasRef.current!.toDataURL("image/png");
-            setQrCodeDataURL(dataURL);
-          };
-          img.src = logo;
-        } else {
-          // Generate data URL without logo
-          const dataURL = canvasRef.current.toDataURL("image/png");
-          setQrCodeDataURL(dataURL);
-        }
-      } catch (error) {
-        console.error("Error generating QR code:", error);
-      }
-    };
-
-    generateQR();
-  }, [qrData, qrOptions, logo]);
 
   const downloadQR = () => {
     if (!qrCodeDataURL) return;
@@ -308,10 +124,11 @@ export const QRCodePreview = ({ qrData, qrOptions, logo }: QRCodePreviewProps) =
         {/* QR Code */}
         <div className="flex justify-center pt-4">
           <div className="bg-white p-4 rounded-2xl shadow-xl">
-            <canvas 
-              ref={canvasRef} 
-              className="max-w-full h-auto rounded-lg"
-              style={{ imageRendering: "pixelated" }}
+            <QRCodeCanvas 
+              qrData={qrData} 
+              qrOptions={qrOptions} 
+              logo={logo} 
+              onQRGenerated={setQrCodeDataURL}
             />
           </div>
         </div>
