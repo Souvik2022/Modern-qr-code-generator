@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -12,6 +13,7 @@ import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
 import { FeatureCards } from "@/components/FeatureCards";
 import { QRTemplates } from "@/components/QRTemplates";
+import { FAQ } from "@/components/FAQ";
 import { Footer } from "@/components/Footer";
 import { DarkModeToggle } from "@/components/DarkModeToggle";
 import { Globe, Wifi, User, MessageSquare, Mail, Phone, MapPin, Calendar, Layers, Upload } from "lucide-react";
@@ -231,6 +233,9 @@ const Index = () => {
           </div>
         </section>
       )}
+      
+      {/* FAQ Section */}
+      <FAQ />
       
       <Footer />
     </div>

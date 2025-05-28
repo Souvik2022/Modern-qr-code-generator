@@ -12,6 +12,10 @@ import {
 } from "@/components/ui/navigation-menu";
 
 export const Header = () => {
+  const scrollToFAQ = () => {
+    document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <header className="bg-white/80 backdrop-blur-2xl border-b border-slate-200/30 sticky top-0 z-50 shadow-lg shadow-slate-200/20">
       <div className="container mx-auto px-4 py-4">
@@ -42,9 +46,12 @@ export const Header = () => {
                   </NavigationMenuLink>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  <button 
+                    onClick={scrollToFAQ}
+                    className={navigationMenuTriggerStyle()}
+                  >
                     FAQ
-                  </NavigationMenuLink>
+                  </button>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
