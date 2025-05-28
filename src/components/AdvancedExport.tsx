@@ -1,9 +1,9 @@
-
 import { useState } from "react";
-import { Download, FileImage, FileType, File } from "lucide-react";
+import { Download, FileImage, FileType, File, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { QRData, QROptions } from "@/pages/Index";
 import { toast } from "@/hooks/use-toast";
 import QRCode from "qrcode";
@@ -18,6 +18,7 @@ interface AdvancedExportProps {
 export const AdvancedExport = ({ qrData, qrOptions, logo }: AdvancedExportProps) => {
   const [exportFormat, setExportFormat] = useState<'png' | 'svg' | 'pdf'>('png');
   const [isExporting, setIsExporting] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const generateQRContent = (data: QRData): string => {
     switch (data.type) {
@@ -150,29 +151,118 @@ export const AdvancedExport = ({ qrData, qrOptions, logo }: AdvancedExportProps)
   const IconComponent = getIcon();
 
   return (
-    <div className="space-y-4 relative z-10">
-      <div className="space-y-2">
-        <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">Export Format</Label>
-        <Select value={exportFormat} onValueChange={(value: 'png' | 'svg' | 'pdf') => setExportFormat(value)}>
-          <SelectTrigger className="bg-white dark:bg-slate-700 border border-gray-200 dark:border-slate-600">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent className="bg-white dark:bg-slate-700 border border-gray-200 dark:border-slate-600 z-50">
-            <SelectItem value="png" className="hover:bg-gray-100 dark:hover:bg-slate-600">PNG (Raster)</SelectItem>
-            <SelectItem value="svg" className="hover:bg-gray-100 dark:hover:bg-slate-600">SVG (Vector)</SelectItem>
-            <SelectItem value="pdf" className="hover:bg-gray-100 dark:hover:bg-slate-600">PDF Document</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
+    <div className="space-y-4">
+      <Sheet open={isOpen} onOpenChange={setIsOpen}>
+        <SheetTrigger asChild>
+          <Button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white">
+            <Settings className="w-4 h-4 mr-2" />
+            Export Options
+          </Button>
+        </SheetTrigger>
+        <SheetContent className="w-[400px] sm:w-[540px]">
+          <SheetHeader>
+            <SheetTitle>Export Settings</SheetTitle>
+            <SheetDescription>
+              Choose your export format and download your QR code.
+            </SheetDescription>
+          </SheetHeader>
+          
+          <div className="space-y-6 mt-6">
+            <div className="space-y-2">
+              <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">Export Format</Label>
+              <Select value={exportFormat} onValueChange={(value: 'png' | 'svg' | 'pdf') => setExportFormat(value)}>
+                <SelectTrigger className="bg-white dark:bg-slate-700 border border-gray-200 dark:border-slate-600">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="bg-white dark:bg-slate-700 border border-gray-200 dark:border-slate-600">
+                  <SelectItem value="png" className="hover:bg-gray-100 dark:hover:bg-slate-600">
+                    <div className="flex items-center gap-2">
+                      <FileImage className="w-4 h-4" />
+                      <div>
+                        <div className="font-medium">PNG (Raster)</div>
+                        <div className="text-xs text-gray-500">Best for web use</div>
+                      </div>
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="svg" className="hover:bg-gray-100 dark:hover:bg-slate-600">
+                    <div className="flex items-center gap-2">
+                      <FileType className="w-4 h-4" />
+                      <div>
+                        <div className="font-medium">SVG (Vector)</div>
+                        <div className="text-xs text-gray-500">Scalable for print</div>
+                      </div>
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="pdf" className="hover:bg-gray-100 dark:hover:bg-slate-600">
+                    <div className="flex items-center gap-2">
+                      <File className="w-4 h-4" />
+                      <div>
+                        <div className="font-medium">PDF Document</div>
+                        <div className="text-xs text-gray-500">Ready to print</div>
+                      </div>
+                    </div>
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
 
-      <Button
-        onClick={handleExport}
-        disabled={isExporting}
-        className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white"
-      >
-        <IconComponent className="w-4 h-4 mr-2" />
-        {isExporting ? "Exporting..." : `Export as ${exportFormat.toUpperCase()}`}
-      </Button>
+            <Button
+              onClick={() => {
+                handleExport();
+                setIsOpen(false);
+              }}
+              disabled={isExporting}
+              className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white"
+            >
+              <IconComponent className="w-4 h-4 mr-2" />
+              {isExporting ? "Exporting..." : `Export as ${exportFormat.toUpperCase()}`}
+            </Button>
+          </div>
+        </SheetContent>
+      </Sheet>
+      
+      {/* Quick export buttons for desktop */}
+      <div className="hidden lg:flex gap-2">
+        <Button
+          onClick={() => {
+            setExportFormat('png');
+            handleExport();
+          }}
+          variant="outline"
+          size="sm"
+          className="flex-1"
+          disabled={isExporting}
+        >
+          <FileImage className="w-3 h-3 mr-1" />
+          PNG
+        </Button>
+        <Button
+          onClick={() => {
+            setExportFormat('svg');
+            handleExport();
+          }}
+          variant="outline"
+          size="sm"
+          className="flex-1"
+          disabled={isExporting}
+        >
+          <FileType className="w-3 h-3 mr-1" />
+          SVG
+        </Button>
+        <Button
+          onClick={() => {
+            setExportFormat('pdf');
+            handleExport();
+          }}
+          variant="outline"
+          size="sm"
+          className="flex-1"
+          disabled={isExporting}
+        >
+          <File className="w-3 h-3 mr-1" />
+          PDF
+        </Button>
+      </div>
     </div>
   );
 };
