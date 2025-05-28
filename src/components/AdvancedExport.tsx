@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Download, FileImage, FileType, File } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -149,17 +150,17 @@ export const AdvancedExport = ({ qrData, qrOptions, logo }: AdvancedExportProps)
   const IconComponent = getIcon();
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 relative z-10">
       <div className="space-y-2">
-        <Label className="text-sm font-medium text-gray-700">Export Format</Label>
+        <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">Export Format</Label>
         <Select value={exportFormat} onValueChange={(value: 'png' | 'svg' | 'pdf') => setExportFormat(value)}>
-          <SelectTrigger>
+          <SelectTrigger className="bg-white dark:bg-slate-700 border border-gray-200 dark:border-slate-600">
             <SelectValue />
           </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="png">PNG (Raster)</SelectItem>
-            <SelectItem value="svg">SVG (Vector)</SelectItem>
-            <SelectItem value="pdf">PDF Document</SelectItem>
+          <SelectContent className="bg-white dark:bg-slate-700 border border-gray-200 dark:border-slate-600 z-50">
+            <SelectItem value="png" className="hover:bg-gray-100 dark:hover:bg-slate-600">PNG (Raster)</SelectItem>
+            <SelectItem value="svg" className="hover:bg-gray-100 dark:hover:bg-slate-600">SVG (Vector)</SelectItem>
+            <SelectItem value="pdf" className="hover:bg-gray-100 dark:hover:bg-slate-600">PDF Document</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -167,7 +168,7 @@ export const AdvancedExport = ({ qrData, qrOptions, logo }: AdvancedExportProps)
       <Button
         onClick={handleExport}
         disabled={isExporting}
-        className="w-full"
+        className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white"
       >
         <IconComponent className="w-4 h-4 mr-2" />
         {isExporting ? "Exporting..." : `Export as ${exportFormat.toUpperCase()}`}

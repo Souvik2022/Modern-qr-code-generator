@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -211,11 +210,11 @@ const Index = () => {
 
                   {/* QR Code Preview */}
                   <div className="lg:col-span-1 space-y-6">
-                    <Card className="p-8 shadow-2xl border-0 bg-white/90 dark:bg-slate-800/90 backdrop-blur-lg rounded-3xl sticky top-8 hover:shadow-3xl transition-all duration-300">
+                    <Card className="p-8 shadow-2xl border-0 bg-white/90 dark:bg-slate-800/90 backdrop-blur-lg rounded-3xl hover:shadow-3xl transition-all duration-300">
                       <QRCodePreview qrData={qrData} qrOptions={qrOptions} logo={logo} />
                     </Card>
 
-                    <Card className="p-6 shadow-2xl border-0 bg-white/90 dark:bg-slate-800/90 backdrop-blur-lg rounded-3xl hover:shadow-3xl transition-all duration-300">
+                    <Card className="p-6 shadow-2xl border-0 bg-white/90 dark:bg-slate-800/90 backdrop-blur-lg rounded-3xl hover:shadow-3xl transition-all duration-300 relative">
                       <h3 className="text-lg font-bold text-slate-800 dark:text-slate-200 mb-4 font-mona">Advanced Export</h3>
                       <AdvancedExport qrData={qrData} qrOptions={qrOptions} logo={logo} />
                     </Card>
