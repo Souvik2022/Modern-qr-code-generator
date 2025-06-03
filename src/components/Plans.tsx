@@ -46,14 +46,14 @@ export const Plans = () => {
   return (
     <section id="plans" className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       <div className="container mx-auto px-4">
-        <div className="text-left mb-12">
+        <div className="text-center mb-12">
           <h2 className="text-4xl lg:text-5xl font-bold font-mona mb-6 text-slate-800 dark:text-slate-200">
             Choose Your{" "}
             <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               Plan
             </span>
           </h2>
-          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl">
+          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
             Start free and upgrade when you need advanced features and account management.
           </p>
         </div>
@@ -144,7 +144,7 @@ export const Plans = () => {
           </div>
         </div>
 
-        <div className="mt-12 text-left">
+        <div className="mt-12 text-center">
           <p className="text-slate-600 dark:text-slate-300 mb-4">
             💡 <strong>Pro Tip:</strong> Login to your account to save all your QR codes, access them from any device, and never lose your work again!
           </p>
