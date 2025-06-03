@@ -13,7 +13,7 @@ export const HeroSection = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-left max-w-5xl">
+        <div className="text-center max-w-5xl mx-auto">
           {/* Badge */}
           <div className="inline-flex items-center px-4 py-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-full border border-indigo-200 dark:border-indigo-600 mb-8">
             <QrCode className="w-4 h-4 mr-2 text-indigo-600 dark:text-indigo-400" />
@@ -32,13 +32,13 @@ export const HeroSection = () => {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl lg:text-2xl text-slate-600 dark:text-slate-300 mb-12 max-w-3xl leading-relaxed">
+          <p className="text-xl lg:text-2xl text-slate-600 dark:text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed">
             Generate customizable QR codes for websites, WiFi, contacts, and more. 
             Professional design meets powerful functionality.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 items-start mb-16">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
             <Button 
               size="lg" 
               className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-xl shadow-indigo-200 dark:shadow-indigo-900/50 transition-all duration-200 hover:scale-105 hover:shadow-2xl"
@@ -56,16 +56,16 @@ export const HeroSection = () => {
           </div>
 
           {/* Statistics */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl">
-            <div className="text-left">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+            <div className="text-center">
               <div className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">50K+</div>
               <div className="text-slate-600 dark:text-slate-300 font-medium">QR Codes Generated</div>
             </div>
-            <div className="text-left">
+            <div className="text-center">
               <div className="text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2">15+</div>
               <div className="text-slate-600 dark:text-slate-300 font-medium">QR Code Types</div>
             </div>
-            <div className="text-left">
+            <div className="text-center">
               <div className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">99.9%</div>
               <div className="text-slate-600 dark:text-slate-300 font-medium">Uptime</div>
             </div>

@@ -70,14 +70,14 @@ export const FeatureCards = () => {
   return (
     <section className="py-20 bg-white dark:bg-slate-900">
       <div className="container mx-auto px-4">
-        <div className="text-left mb-16">
+        <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold font-mona mb-6 text-slate-800 dark:text-slate-200">
             Why Choose Our{" "}
             <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               QR Generator?
             </span>
           </h2>
-          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl">
+          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
             Powerful features designed for professionals, creators, and businesses of all sizes.
           </p>
         </div>
