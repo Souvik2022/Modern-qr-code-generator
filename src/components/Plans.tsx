@@ -46,19 +46,19 @@ export const Plans = () => {
   return (
     <section id="plans" className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-left mb-12">
           <h2 className="text-4xl lg:text-5xl font-bold font-mona mb-6 text-slate-800 dark:text-slate-200">
             Choose Your{" "}
             <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               Plan
             </span>
           </h2>
-          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl">
             Start free and upgrade when you need advanced features and account management.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl">
           {plans.map((plan, index) => (
             <Card 
               key={plan.name} 
@@ -69,7 +69,7 @@ export const Plans = () => {
               }`}
             >
               {plan.popular && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <div className="absolute -top-4 left-8">
                   <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-2 rounded-full text-sm font-semibold flex items-center gap-2 shadow-lg">
                     <Crown className="w-4 h-4" />
                     Most Popular
@@ -77,8 +77,8 @@ export const Plans = () => {
                 </div>
               )}
 
-              <CardHeader className="text-center pb-8">
-                <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center ${
+              <CardHeader className="text-left pb-8">
+                <div className={`w-16 h-16 mb-4 rounded-2xl flex items-center justify-center ${
                   plan.popular 
                     ? "bg-gradient-to-r from-indigo-600 to-purple-600" 
                     : "bg-slate-100 dark:bg-slate-700"
@@ -142,7 +142,7 @@ export const Plans = () => {
           ))}
         </div>
 
-        <div className="mt-12 text-center">
+        <div className="mt-12 text-left">
           <p className="text-slate-600 dark:text-slate-300 mb-4">
             💡 <strong>Pro Tip:</strong> Login to your account to save all your QR codes, access them from any device, and never lose your work again!
           </p>

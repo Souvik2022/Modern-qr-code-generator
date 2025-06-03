@@ -40,19 +40,19 @@ export const FAQ = () => {
   return (
     <section id="faq" className="py-20 bg-white dark:bg-slate-900">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-left mb-12">
           <h2 className="text-4xl lg:text-5xl font-bold font-mona mb-6 text-slate-800 dark:text-slate-200">
             Frequently Asked{" "}
             <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               Questions
             </span>
           </h2>
-          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl">
             Find answers to common questions about QRGen Pro and QR code generation.
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <Accordion type="single" collapsible className="w-full space-y-4">
             {faqs.map((faq, index) => (
               <AccordionItem 
@@ -70,7 +70,7 @@ export const FAQ = () => {
             ))}
           </Accordion>
 
-          <div className="mt-12 text-center p-8 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-3xl border border-indigo-100 dark:border-indigo-800">
+          <div className="mt-12 text-left p-8 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-3xl border border-indigo-100 dark:border-indigo-800">
             <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-200 mb-4">
               💡 Pro Tip: Save Your QR Codes
             </h3>
