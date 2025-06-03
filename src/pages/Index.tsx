@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -17,6 +16,7 @@ import { FAQ } from "@/components/FAQ";
 import { Footer } from "@/components/Footer";
 import { DarkModeToggle } from "@/components/DarkModeToggle";
 import { Globe, Wifi, User, MessageSquare, Mail, Phone, MapPin, Calendar, Layers, Upload } from "lucide-react";
+import { Plans } from "@/components/Plans";
 
 export interface QRData {
   type: string;
@@ -117,6 +117,9 @@ const Index = () => {
       
       {/* QR Templates */}
       <QRTemplates onSelectTemplate={handleTemplateSelect} />
+      
+      {/* Plans Section */}
+      <Plans />
       
       {/* QR Generator Section */}
       {showGenerator && (
