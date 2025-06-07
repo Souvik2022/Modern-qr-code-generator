@@ -102,7 +102,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-900 transition-colors">
+    <div className="min-h-screen bg-cream dark:bg-coffee-brown transition-colors">
       <div className="absolute top-4 right-4 z-50">
         <DarkModeToggle />
       </div>
@@ -115,15 +115,15 @@ const Index = () => {
       {/* Feature Cards */}
       <FeatureCards />
       
+      {/* Plans Section - moved before templates */}
+      <Plans />
+      
       {/* QR Templates */}
       <QRTemplates onSelectTemplate={handleTemplateSelect} />
       
-      {/* Plans Section */}
-      <Plans />
-      
       {/* QR Generator Section */}
       {showGenerator && (
-        <section id="qr-generator" className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+        <section id="qr-generator" className="py-20 bg-gradient-to-br from-cream via-warm-gray to-stone dark:from-coffee-brown dark:via-slate-800 dark:to-slate-900">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-4xl lg:text-5xl font-bold font-mona mb-6 text-slate-800 dark:text-slate-200">

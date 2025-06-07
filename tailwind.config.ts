@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -25,6 +24,12 @@ export default {
 				'montserrat': ['Montserrat', 'sans-serif'],
 			},
 			colors: {
+				// Warm Neutrals Color Scheme
+				'cream': '#FDF6EC',
+				'warm-gray': '#D6CFC4',
+				'stone': '#A89F91',
+				'coffee-brown': '#4A403A',
+				
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
