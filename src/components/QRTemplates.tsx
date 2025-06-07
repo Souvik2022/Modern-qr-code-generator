@@ -77,16 +77,16 @@ interface QRTemplatesProps {
 
 export const QRTemplates = ({ onSelectTemplate }: QRTemplatesProps) => {
   return (
-    <section className="py-20 bg-gradient-to-br from-warm-gray to-cream dark:from-slate-800 dark:to-coffee-brown">
+    <section className="py-20 bg-gradient-to-br from-indigo-50 via-blue-50 to-purple-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-700">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold font-montserrat mb-6 text-coffee-brown dark:text-cream">
+          <h2 className="text-4xl lg:text-5xl font-bold font-montserrat mb-6 text-slate-800 dark:text-slate-100">
             Choose Your{" "}
-            <span className="bg-gradient-to-r from-stone to-coffee-brown bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               QR Template
             </span>
           </h2>
-          <p className="text-xl text-coffee-brown/70 dark:text-warm-gray max-w-3xl mx-auto">
+          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
             Start with a pre-designed template for your specific use case.
           </p>
         </div>
@@ -97,35 +97,35 @@ export const QRTemplates = ({ onSelectTemplate }: QRTemplatesProps) => {
             return (
               <Card 
                 key={template.id} 
-                className="relative p-6 bg-cream/90 dark:bg-coffee-brown/90 backdrop-blur-lg border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 rounded-2xl group cursor-pointer overflow-hidden"
+                className="relative p-6 bg-white/90 dark:bg-slate-800/90 backdrop-blur-lg border-0 shadow-xl rounded-2xl group cursor-pointer overflow-hidden hover:-translate-y-1 transition-all duration-200"
                 onClick={() => onSelectTemplate(template.id)}
               >
                 {template.popular && (
-                  <div className="absolute top-4 right-4 bg-gradient-to-r from-stone to-coffee-brown text-cream text-xs font-bold px-3 py-1 rounded-full">
+                  <div className="absolute top-4 right-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full">
                     Popular
                   </div>
                 )}
                 
-                <div className={`w-14 h-14 bg-gradient-to-r ${template.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                <div className={`w-14 h-14 bg-gradient-to-r ${template.color} rounded-xl flex items-center justify-center mb-4`}>
                   <IconComponent className="w-7 h-7 text-white" />
                 </div>
                 
-                <h3 className="text-lg font-bold text-coffee-brown dark:text-cream mb-2 font-montserrat">
+                <h3 className="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2 font-montserrat">
                   {template.title}
                 </h3>
                 
-                <p className="text-coffee-brown/70 dark:text-warm-gray text-sm mb-3 leading-relaxed">
+                <p className="text-slate-600 dark:text-slate-300 text-sm mb-3 leading-relaxed">
                   {template.description}
                 </p>
                 
-                <div className="text-xs text-coffee-brown/50 dark:text-stone mb-4 font-mono bg-warm-gray dark:bg-stone/20 px-3 py-2 rounded-lg">
+                <div className="text-xs text-slate-500 dark:text-slate-400 mb-4 font-mono bg-slate-100 dark:bg-slate-700 px-3 py-2 rounded-lg">
                   {template.example}
                 </div>
                 
                 <Button 
                   variant="outline" 
                   size="sm" 
-                  className="w-full group-hover:bg-gradient-to-r group-hover:from-stone group-hover:to-coffee-brown group-hover:text-cream group-hover:border-transparent transition-all duration-200"
+                  className="w-full hover:bg-gradient-to-r hover:from-indigo-600 hover:to-purple-600 hover:text-white hover:border-transparent transition-all duration-200"
                 >
                   Use Template
                 </Button>

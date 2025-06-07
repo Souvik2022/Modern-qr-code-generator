@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -114,9 +115,6 @@ const Index = () => {
       
       {/* Feature Cards */}
       <FeatureCards />
-      
-      {/* Plans Section - moved before templates */}
-      <Plans />
       
       {/* QR Templates */}
       <QRTemplates onSelectTemplate={handleTemplateSelect} />
@@ -236,6 +234,9 @@ const Index = () => {
           </div>
         </section>
       )}
+      
+      {/* Plans Section - moved to bottom */}
+      <Plans />
       
       {/* FAQ Section */}
       <FAQ />
