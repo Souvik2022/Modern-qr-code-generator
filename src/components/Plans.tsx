@@ -47,7 +47,7 @@ export const Plans = () => {
     <section id="plans" className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl lg:text-5xl font-bold font-mona mb-6 text-slate-800 dark:text-slate-200">
+          <h2 className="text-4xl lg:text-5xl font-bold font-montserrat mb-6 text-slate-800 dark:text-slate-200">
             Choose Your{" "}
             <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               Plan
@@ -63,7 +63,7 @@ export const Plans = () => {
             {plans.map((plan, index) => (
               <Card 
                 key={plan.name} 
-                className={`relative p-8 shadow-2xl border-0 backdrop-blur-lg rounded-3xl hover:shadow-3xl transition-all duration-300 hover:scale-105 ${
+                className={`relative p-8 border-0 backdrop-blur-lg rounded-3xl transition-all duration-300 hover:scale-[1.02] ${
                   plan.popular 
                     ? "bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/50 dark:to-purple-900/50 ring-2 ring-indigo-500/50" 
                     : "bg-white/90 dark:bg-slate-800/90"
@@ -71,7 +71,7 @@ export const Plans = () => {
               >
                 {plan.popular && (
                   <div className="absolute -top-4 left-8">
-                    <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-2 rounded-full text-sm font-semibold flex items-center gap-2 shadow-lg">
+                    <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
                       <Crown className="w-4 h-4" />
                       Most Popular
                     </div>
@@ -130,9 +130,9 @@ export const Plans = () => {
                   <Button 
                     variant={plan.buttonVariant}
                     size="lg"
-                    className={`w-full font-semibold py-3 rounded-xl transition-all duration-200 hover:scale-105 ${
+                    className={`w-full font-semibold py-3 rounded-xl transition-all duration-200 hover:scale-[1.02] ${
                       plan.popular 
-                        ? "bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg shadow-indigo-200/50" 
+                        ? "bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white" 
                         : "border-2 border-slate-300 dark:border-slate-600 hover:border-indigo-300 dark:hover:border-indigo-600"
                     }`}
                   >

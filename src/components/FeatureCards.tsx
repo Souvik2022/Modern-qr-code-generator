@@ -71,7 +71,7 @@ export const FeatureCards = () => {
     <section className="py-20 bg-white dark:bg-slate-900">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold font-mona mb-6 text-slate-800 dark:text-slate-200">
+          <h2 className="text-4xl lg:text-5xl font-bold font-montserrat mb-6 text-slate-800 dark:text-slate-200">
             Why Choose Our{" "}
             <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               QR Generator?
@@ -88,13 +88,13 @@ export const FeatureCards = () => {
             return (
               <Card 
                 key={index} 
-                className="p-8 bg-white/80 dark:bg-slate-800/80 backdrop-blur-lg border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 rounded-2xl group"
+                className="p-8 bg-white/80 dark:bg-slate-800/80 backdrop-blur-lg border-0 transition-all duration-300 hover:scale-[1.02] rounded-2xl group"
               >
-                <div className={`w-16 h-16 bg-gradient-to-r ${feature.gradient} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                <div className={`w-16 h-16 bg-gradient-to-r ${feature.gradient} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-300`}>
                   <IconComponent className="w-8 h-8 text-white" />
                 </div>
                 
-                <h3 className="text-xl font-bold text-slate-800 dark:text-slate-200 mb-4 font-mona">
+                <h3 className="text-xl font-bold text-slate-800 dark:text-slate-200 mb-4 font-montserrat">
                   {feature.title}
                 </h3>
                 

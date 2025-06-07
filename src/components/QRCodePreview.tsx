@@ -107,7 +107,7 @@ export const QRCodePreview = ({ qrData, qrOptions, logo }: QRCodePreviewProps) =
       </h3>
       
       {/* Styled QR Code Container */}
-      <div className={`relative bg-gradient-to-br ${typeStyles.bg} p-8 rounded-3xl shadow-2xl overflow-hidden`}>
+      <div className={`relative bg-gradient-to-br ${typeStyles.bg} p-8 rounded-3xl overflow-hidden`}>
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-4 left-4 w-12 h-12 border-4 border-white rounded-full"></div>
@@ -123,7 +123,7 @@ export const QRCodePreview = ({ qrData, qrOptions, logo }: QRCodePreviewProps) =
         
         {/* QR Code */}
         <div className="flex justify-center pt-4">
-          <div className="bg-white p-4 rounded-2xl shadow-xl">
+          <div className="bg-white p-4 rounded-2xl">
             <QRCodeCanvas 
               qrData={qrData} 
               qrOptions={qrOptions} 
@@ -144,7 +144,7 @@ export const QRCodePreview = ({ qrData, qrOptions, logo }: QRCodePreviewProps) =
       <div className="space-y-3">
         <Button 
           onClick={downloadQR} 
-          className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 rounded-xl py-6 text-lg font-semibold shadow-lg shadow-indigo-200 dark:shadow-indigo-900/50 transition-all duration-200 hover:shadow-xl hover:scale-105"
+          className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 rounded-xl py-6 text-lg font-semibold transition-all duration-200 hover:scale-[1.02]"
           disabled={!qrCodeDataURL}
         >
           <Download className="w-5 h-5 mr-3" />
