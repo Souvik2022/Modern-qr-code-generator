@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Download, Share2, Copy, Globe, Wifi, User, MessageSquare, Mail, Phone, MapPin, Calendar } from "lucide-react";
@@ -144,7 +143,7 @@ export const QRCodePreview = ({ qrData, qrOptions, logo }: QRCodePreviewProps) =
       <div className="space-y-3">
         <Button 
           onClick={downloadQR} 
-          className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 rounded-xl py-6 text-lg font-semibold transition-all duration-200 hover:scale-[1.02]"
+          className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 rounded-xl py-6 text-lg font-semibold transition-transform duration-200 hover:-translate-y-1"
           disabled={!qrCodeDataURL}
         >
           <Download className="w-5 h-5 mr-3" />
@@ -156,7 +155,7 @@ export const QRCodePreview = ({ qrData, qrOptions, logo }: QRCodePreviewProps) =
             onClick={copyQR} 
             variant="outline"
             disabled={!qrCodeDataURL}
-            className="border-indigo-200 dark:border-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/50 hover:border-indigo-300 dark:hover:border-indigo-500 rounded-xl py-3 font-semibold transition-all duration-200"
+            className="border-indigo-200 dark:border-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/50 hover:border-indigo-300 dark:hover:border-indigo-500 rounded-xl py-3 font-semibold transition-transform duration-200 hover:-translate-y-1"
           >
             <Copy className="w-4 h-4 mr-2" />
             Copy
@@ -166,7 +165,7 @@ export const QRCodePreview = ({ qrData, qrOptions, logo }: QRCodePreviewProps) =
             onClick={shareQR} 
             variant="outline"
             disabled={!qrCodeDataURL}
-            className="border-indigo-200 dark:border-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/50 hover:border-indigo-300 dark:hover:border-indigo-500 rounded-xl py-3 font-semibold transition-all duration-200"
+            className="border-indigo-200 dark:border-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/50 hover:border-indigo-300 dark:hover:border-indigo-500 rounded-xl py-3 font-semibold transition-transform duration-200 hover:-translate-y-1"
           >
             <Share2 className="w-4 h-4 mr-2" />
             Share

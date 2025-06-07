@@ -63,7 +63,7 @@ export const Plans = () => {
             {plans.map((plan, index) => (
               <Card 
                 key={plan.name} 
-                className={`relative p-8 border-0 backdrop-blur-lg rounded-3xl transition-all duration-300 hover:scale-[1.02] ${
+                className={`relative p-8 border-0 rounded-3xl transition-transform duration-200 hover:-translate-y-1 ${
                   plan.popular 
                     ? "bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/50 dark:to-purple-900/50 ring-2 ring-indigo-500/50" 
                     : "bg-white/90 dark:bg-slate-800/90"
@@ -130,7 +130,7 @@ export const Plans = () => {
                   <Button 
                     variant={plan.buttonVariant}
                     size="lg"
-                    className={`w-full font-semibold py-3 rounded-xl transition-all duration-200 hover:scale-[1.02] ${
+                    className={`w-full font-semibold py-3 rounded-xl transition-transform duration-200 hover:-translate-y-1 ${
                       plan.popular 
                         ? "bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white" 
                         : "border-2 border-slate-300 dark:border-slate-600 hover:border-indigo-300 dark:hover:border-indigo-600"

@@ -88,9 +88,9 @@ export const FeatureCards = () => {
             return (
               <Card 
                 key={index} 
-                className="p-8 bg-white/80 dark:bg-slate-800/80 backdrop-blur-lg border-0 transition-all duration-300 hover:scale-[1.02] rounded-2xl group"
+                className="p-8 bg-white/80 dark:bg-slate-800/80 border-0 transition-transform duration-200 hover:-translate-y-1 rounded-2xl"
               >
-                <div className={`w-16 h-16 bg-gradient-to-r ${feature.gradient} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-300`}>
+                <div className={`w-16 h-16 bg-gradient-to-r ${feature.gradient} rounded-2xl flex items-center justify-center mb-6`}>
                   <IconComponent className="w-8 h-8 text-white" />
                 </div>
                 
