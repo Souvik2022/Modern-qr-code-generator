@@ -71,7 +71,7 @@ export const FeatureCards = () => {
     <section className="py-20 bg-white dark:bg-slate-900">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold font-montserrat mb-6 text-slate-800 dark:text-slate-200">
+          <h2 className="text-4xl lg:text-5xl font-bold font-inter mb-6 text-slate-800 dark:text-slate-200">
             Why Choose Our{" "}
             <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               QR Generator?
@@ -94,7 +94,7 @@ export const FeatureCards = () => {
                   <IconComponent className="w-8 h-8 text-white" />
                 </div>
                 
-                <h3 className="text-xl font-bold text-slate-800 dark:text-slate-200 mb-4 font-montserrat">
+                <h3 className="text-xl font-bold text-slate-800 dark:text-slate-200 mb-4 font-inter">
                   {feature.title}
                 </h3>
                 

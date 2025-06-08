@@ -80,7 +80,7 @@ export const QRTemplates = ({ onSelectTemplate }: QRTemplatesProps) => {
     <section className="py-20 bg-gradient-to-br from-indigo-50 via-blue-50 to-purple-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-700">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold font-montserrat mb-6 text-slate-800 dark:text-slate-100">
+          <h2 className="text-4xl lg:text-5xl font-bold font-inter mb-6 text-slate-800 dark:text-slate-100">
             Choose Your{" "}
             <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               QR Template
@@ -110,7 +110,7 @@ export const QRTemplates = ({ onSelectTemplate }: QRTemplatesProps) => {
                   <IconComponent className="w-7 h-7 text-white" />
                 </div>
                 
-                <h3 className="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2 font-montserrat">
+                <h3 className="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2 font-inter">
                   {template.title}
                 </h3>
                 

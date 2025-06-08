@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -20,8 +19,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Mona Sans', 'Inter', 'system-ui', 'sans-serif'],
-				'mona': ['Mona Sans', 'system-ui', 'sans-serif'],
+				sans: ['Inter', 'system-ui', 'sans-serif'],
+				'inter': ['Inter', 'system-ui', 'sans-serif'],
 				'montserrat': ['Montserrat', 'sans-serif'],
 			},
 			colors: {

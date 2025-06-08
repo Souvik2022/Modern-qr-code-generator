@@ -23,7 +23,7 @@ export const HeroSection = () => {
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-6xl lg:text-7xl font-bold font-mona mb-8 leading-tight">
+          <h1 className="text-6xl lg:text-7xl font-bold font-inter mb-8 leading-tight">
             Create Beautiful{" "}
             <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
               QR Codes
@@ -41,7 +41,7 @@ export const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-xl shadow-indigo-200 dark:shadow-indigo-900/50 transition-all duration-200 hover:scale-105 hover:shadow-2xl"
+              className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-xl shadow-indigo-200 dark:shadow-indigo-900/50 transition-all duration-200 hover:-translate-y-1"
             >
               Start Creating Free
               <ArrowRight className="w-5 h-5 ml-2" />
