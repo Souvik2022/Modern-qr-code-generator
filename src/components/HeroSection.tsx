@@ -23,7 +23,7 @@ export const HeroSection = () => {
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-6xl lg:text-7xl font-bold font-inter mb-8 leading-tight">
+          <h1 className="text-6xl lg:text-7xl font-bold font-inter mb-8 leading-tight tracking-tight">
             Create Beautiful{" "}
             <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
               QR Codes
