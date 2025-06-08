@@ -25,15 +25,11 @@ export const Header = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-200/50 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"></div>
-              <QrCode className="w-7 h-7 text-white relative z-10" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                QRGen Pro
-              </h1>
-            </div>
+            <img 
+              src="/lovable-uploads/5dd21e98-61bc-4bc2-b50e-74b3b997dbfc.png" 
+              alt="Scanly Logo" 
+              className="h-10 w-auto"
+            />
           </div>
           
           <div className="flex items-center space-x-8">
